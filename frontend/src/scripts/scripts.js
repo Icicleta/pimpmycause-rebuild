@@ -37,15 +37,15 @@ $(window).on("load", function() {
 //  SUMMARY - HAVE YOU SEEN - PANEL 
 //  ******************************* 
     
-//  toggle click-event class to element to perform slide up functionality displaying summary info on click
+//  toggle click-event class to element to perform slide up functionality displaying summary info on hover
       
-    $('.summary-title').on('click', function () {
-        $(this).toggleClass('click-event');
-    });
+    // $('.summary-title').on('hover', function () {
+    //     $(this).toggleClass('click-event');
+    // });
     
-    $('.summary-info').on('click', function () {
-        $(this).toggleClass('click-event');
-    });
+    // $('.summary-info').on('hover', function () {
+    //     $(this).toggleClass('click-event');
+    // });
     
 
 //  *******************************

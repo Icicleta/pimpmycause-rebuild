@@ -170,9 +170,8 @@ $summary-info-height: rem-calc(137);
     margin-bottom: rem-calc(10);
     
     .summary-title, .summary-info {
-        position: absolute;  
-        width: calc(100% - #{rem-calc(20)}); //sass interpolation 
-        left: rem-calc(10);
+        
+        position: absolute;
         text-align: center;
         background-color: $overlay; 
         vertical-align: middle;
@@ -181,10 +180,12 @@ $summary-info-height: rem-calc(137);
     
     .summary-title {
         
+        width: calc(100% - #{rem-calc(20)}); //sass interpolation 
+        left: rem-calc(10);
         bottom: rem-calc(-1); // to compensate chrome pixel line
         height: rem-calc(50);
         line-height: rem-calc(50);
-        z-index: 20;
+        z-index: 0;
         transition: background-color .5s, color .5s; // fade in at same rate as summary-info slides up - visual effect
     
         &:before {
@@ -192,39 +193,38 @@ $summary-info-height: rem-calc(137);
             transition: border-bottom-color .5s; // same visual effect on before triangle
         }
         
+        .summary-info {
+            width: 100%;
+            bottom: 0px;
+            padding: rem-calc(10);
+            padding-bottom: rem-calc(60); //bottom padding is height of summary title and small triangle 
+            opacity: 0.9;
+            line-height: rem-calc(30);
+            color: $grey3;
+            // z-index: -1;
+
+            transform: translateY(100%);
+            transition: transform .5s;
+            
+            .read-more {
+                @include readmore;
+            }
+            &hover {
+                // z-index: -1;
+            }
+        }
+        
         // to ensure event is activated via hover on desktop and click on mobile device
         &:hover,
         &.click-event{
-            
-            + .summary-info {
-                transform: translateY(0);  // translate next sibling 
+            z-index: 1;
+            .summary-info {
+                // z-index: -1;
+                transform: translateY(0%);
+                transition: transform .5s;;  // translate next sibling 
             }  
         } 
-    }
-    
-    .summary-info {
-        
-        bottom: 0;
-        padding: rem-calc(10);
-        padding-bottom: rem-calc(60); //bottom padding is height of summary title and small triangle 
-        opacity: 0.9;
-        z-index: 10;
-
-        transform: translateY(100%);
-        transition: transform .5s;
-        
-        // to ensure event is activated via hover on desktop and click on mobile device
-        &:hover,
-        &.click-event{
-            
-            transform: translateY(0);  // translate next sibling 
-        } 
-        
-        .read-more {
-            @include readmore;
-        }
-    }
-    
+    }    
 }
 
 // hover or click summary title to change the colour of the title and the :before psuedo element
@@ -241,7 +241,7 @@ $summary-info-height: rem-calc(137);
         background-color: $pink;  
         &:before {
             border-bottom-color: $pink;
-        }
+        }        
     }
     
     .summary-purple & {
